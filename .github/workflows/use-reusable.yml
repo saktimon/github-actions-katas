@@ -1,0 +1,19 @@
+name: Workflow that uses reusable summary workflow
+description: "Prints summary of given numbers in nice format"
+
+on: [workflow_dispatch]
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable.yml
+    with:
+      numbers: '[5, 15, 25, 35, 45]'
+
+  show-summary:
+    runs-on: ubuntu-latest
+    needs: [call-reusable]
+    steps:
+      - name: Print reusable workflow outputs
+        run: |
+          echo "Reusable summary (JSON): ${{ needs.call-reusable.outputs.summary }}"
+          echo "Reusable summary (text): ${{ needs.call-reusable.outputs.summary_text }}"
