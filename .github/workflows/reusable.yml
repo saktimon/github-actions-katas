@@ -1,19 +1,20 @@
 name: Reusable summary workflow
 description: "Prints summary of given numbers in nice format"
-on: 
+on:
   workflow_call:
     inputs:
       numbers:
         description: 'JSON array of numbers as a string, e.g. "[1,2,3]"'
+        type: string
         required: true
         default: '[1,2,3]'
-      outputs:
-        summary:
-          description: 'Summary produced by the composite action (JSON)'
-          value: ${{ jobs.summarize.outputs.summary }}
-        summary_text:
-          description: 'Human-readable summary text'
-          value: ${{ jobs.summarize.outputs.summary_text }}
+    outputs:
+      summary:
+        description: 'Summary produced by the composite action (JSON)'
+        value: ${{ jobs.summarize.outputs.summary }}
+      summary_text:
+        description: 'Human-readable summary text'
+        value: ${{ jobs.summarize.outputs.summary_text }}
 
 jobs:
   summarize:
