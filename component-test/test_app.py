@@ -4,7 +4,7 @@ import unittest
 import os
 import requests
 import re
-import time
+#import time
 
 
 class TestName(unittest.TestCase):
